@@ -12,7 +12,6 @@ async function startServer() {
 }
 
 startServer();
-
 app.get('/', (req, res)=>{
     res.send("Hello World. Das ist jetzt der Test")
 });

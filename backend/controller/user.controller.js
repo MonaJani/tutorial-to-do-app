@@ -1,4 +1,11 @@
+const path = require("path");
+console.log("resolved path:", require.resolve("../services/user.services"));
+
 const   userService = require("../services/user.services");
+
+console.log("userService:", userService);
+console.log("type:", typeof userService);
+console.log("keys:", Object.getOwnPropertyNames(userService));
 
 
 exports.register = async(req, res, next) => {
