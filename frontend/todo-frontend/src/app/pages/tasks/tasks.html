@@ -1,1 +1,36 @@
-<p>tasks works!</p>
+<div class="min-h-screen flex flex-col bg-linear-to-br from-indigo-400 to bg-indigo-800  text-white">
+     <header class="p-6 border-b border-gray-700">
+        <h1 class="text-2xl font-bold">ToDo-App</h1>
+        <nav class="flex justify-between w-full mt-2  px-8 py-4 bg-slate-900 text-white border-b border-slate-700  rounded-lg">
+            <div class="flex gap-4 justify-between w-full ">
+                <a routerLink="/tasks" class="hover:text-cyan-800 transition">Tasks</a>
+            </div>
+            <div class="flex gap-4 justify-between w-full">
+                <a routerLink="/tasks/new" class="hover:text-cyan-800 transition">New Tasks</a>
+            </div>
+            <div class="flex gap-4 justify-between w-full">
+                 <a routerLink="/" class="hover:text-cyan-800 transition">Log out</a>
+            </div>              
+       </nav>
+    </header>
+
+
+
+<main class="flex flex-col items-center min-h-screen">
+ <h1 class="text-2xl font-bold mb-6 text-center justify-center">Today's Tasks:</h1>
+ <div>
+ @for(task of tasks; track $index) {
+ <div class="bg-indigo-900 p-8 rounded-lg shadow-lg w-200 mb-8">
+    <div class="flex justify-between items-start mb-3"></div>
+    <div>
+    <h2 class="text-xl font-semibold">{{task.name }}</h2>
+    <p class="text-sm text-slate-300">Due: {{task.date}}</p>
+ </div>
+ </div>
+   
+}
+</div>
+
+</main>
+</div>
+
