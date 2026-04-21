@@ -26,6 +26,7 @@
       <label class="mb-1 w-32 text-white text-sm">Name: </label>
       <input 
         type="text"
+        [(ngModel)] = "title"
         placeholder="Enter task name"
         class="flex-1 px-4 py-2 rounded bg-fuchsia-200 text-black outline-none focus:ring-2 focus:ring-blue-500">
     </div>
@@ -34,15 +35,14 @@
       <label class="w-32 mb-1 text-sm">Date:</label>
       <input 
         type="date"
+        [(ngModel)] = "dueDate"
         class="flex-1 px-4 py-2 rounded-lg bg-fuchsia-200 text-black outline-none focus:ring-2 focus:ring-blue-500">
     </div>
 
     <div class="flex items-center gap-4">
       <label class="mb-1 w-32 text-sm  text-white">Priority: </label>
-      <select
-      class="flex-1 px-4 py-2 rounded-lg bg-fuchsia-200 text-black outline-none focus:ring-2 focus:ring-blue-500"
-    >
-      <option value="">Select priority</option>
+      <select [(ngModel)]="priority"
+      class="flex-1 px-4 py-2 rounded-lg bg-fuchsia-200 text-black outline-none focus:ring-2 focus:ring-blue-500">
       <option value="high">High</option>
       <option value="medium">Medium</option>
       <option value="low">Low</option>
@@ -54,12 +54,15 @@
       <textarea
         rows="6"
         placeholder="Enter description"
+        [(ngModel)] = description
         class="flex-1 px-4 py-3 rounded-lg bg-fuchsia-200 text-black outline-none focus:ring-2 focus:ring-blue-500 resize-none">
       </textarea>
       
     </div>
     
-    <button class="w-50 block mx-auto items-center bg-fuchsia-900 py-2 rounded hover:bg-mauve-700 transition" type="submit">
+    <button 
+    (click)= "createTask()"
+    class="w-50 block mx-auto items-center bg-fuchsia-900 py-2 rounded hover:bg-mauve-700 transition ">
       Create task
     </button>
    
