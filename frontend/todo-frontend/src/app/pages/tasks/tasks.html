@@ -19,16 +19,24 @@
 <main class="flex flex-col items-center min-h-screen">
  <h1 class="text-2xl font-bold mb-6 text-center justify-center">Today's Tasks:</h1>
  <div>
- @for(task of tasks; track $index) {
- <div class="bg-indigo-900 p-8 rounded-lg shadow-lg w-200 mb-8">
+
+    <div *ngIf="tasks.length ===0">
+       No open Tasks for today!
+
+    </div>
+
+ <div *ngFor = "let task of tasks" class="bg-indigo-900 p-8 rounded-lg shadow-lg w-200 mb-8">
     <div class="flex justify-between items-start mb-3"></div>
     <div>
-    <h2 class="text-xl font-semibold">{{task.name }}</h2>
-    <p class="text-sm text-slate-300">Due: {{task.date}}</p>
+    <h2 class="text-xl font-semibold">{{task.name || task.title }}</h2>
+    <p class="text-sm text-slate-300">Due: {{task.date || task.dueDate}}</p>
+    <p class="text-sm text-slate-300">Description: {{task.description}}</p>
+    <p class="text-sm text-slate-300">Priority: {{task.priority}}</p>
+    <p class="text-sm text-slate-300">Done: {{task.done ? 'Completed' : 'Open'}}</p>
  </div>
  </div>
    
-}
+
 </div>
 
 </main>

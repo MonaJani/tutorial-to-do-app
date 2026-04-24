@@ -11,9 +11,9 @@ class TaskService {
         }
     }
 
-    static async getAllTask(taskData) {
+    static async getAllTasks(taskData) {
         try {
-            return (await TaskModel.find()).toSorted({ createdAt: -1});
+            return await TaskModel.find().sort({ createdAt: -1});
         }
         catch(error) {
             throw error

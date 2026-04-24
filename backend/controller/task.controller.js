@@ -2,12 +2,12 @@ const taskService = require('../services/task.service');
 
 exports.createTask = async (req, res, next) => {
     try {
-        const {name, description, date, priority, done} = req.body;
+        const {title, description, dueDate, priority, done} = req.body;
 
         const task = await taskService.createTask({
-            name, 
+            title, 
             description,
-            date, 
+            dueDate, 
             priority,
             done
         });

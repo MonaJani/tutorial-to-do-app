@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {Router, RouterLink } from "@angular/router";
 import { FormsModule } from '@angular/forms';
 import { TaskService } from '../../services/task.service';
-import { Task } from '../../models/task';
+
 
 @Component({
   selector: 'app-create-task',
@@ -16,6 +16,7 @@ export class CreateTask {
   description: string = '';
   dueDate: string = '';
   priority: 'low' | 'medium' |'high' = 'medium';
+  done: boolean = false;
 
   constructor(
     private taskService: TaskService,
@@ -23,30 +24,42 @@ export class CreateTask {
 
   ) {}
 
-  createTask(): void {
-    if(!this.title.trim()) {
-      return;
-    }
+ createTask(): void {
+  console.log('1 - Methode wurde ausgelöst');
 
-    const newTask: Task = {
-      id: Date.now(),
-      title: this.title,
-      description: this.description,
-      completed: false,
-      dueDate: this.dueDate,
-      priority: this.priority,
-    };
-
-    this.taskService.addTask(newTask);
-
-    this.title = '',
-    this.description = '';
-    this.dueDate = '',
-    this.priority = 'medium';
-
-    this.router.navigate(['/tasks']);
-
+  if (!this.title.trim()) {
+    console.log('2 - Titel ist leer');
+    return;
   }
 
+    const newTask = {
+      title: this.title,
+      description: this.description,
+      dueDate: this.dueDate,
+      priority: this.priority,
+      done: this.done
+    };
 
+    console.log('3 - Task wird gesendet:', newTask);
+
+    this.taskService.createTask(newTask).subscribe({
+      next: (response: any) => {
+        console.log('4 - Erfolg vom Backend', response);
+        console.log('Task erstellt:', response);
+        this.title = '';
+        this.description = '';
+        this.dueDate = '';
+        this.priority = 'medium';
+        this.done = false;
+
+        
+      },
+      error: (err: any) => {
+        console.error('5 - Fehler beim Erstellen der Task:', err);
+      }
+    });
+  }
 }
+    
+
+    
